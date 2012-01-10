@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 内存计算消耗表 -->
+<calculate_lets>
+	<net_lets>
+		<!-- humongous data-->
+		<cal_let type="in">NET Data</cal_let>
+		<!-- humongous data-->
+		<cal_let type="in">build IStatSession </cal_let>
+	</net_lets>
+	
+</calculate_lets>

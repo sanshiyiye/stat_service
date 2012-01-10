@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<!-- DB 
+	<bean id="GMDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>org.logicalcobwebs.proxool.ProxoolDriver
+			</value>
+		</property>
+		<property name="url">
+			<value>proxool.passport</value>
+		</property>
+	</bean>
+	<bean name="userDao" class="com.obm.passport.db.impl.PassportDaoImpl">
+		<property name="dataSource" ref="GMDataSource"></property>
+	</bean>
+	-->
+	<!-- Bean 
+	<bean name="consumeManager" class="com.obm.passport.core.ConsumeManager"
+		init-method="init">
+		<property name="userDao" ref="userDao"></property>
+		<property name="passportMappingDao" ref="userIdMapping"></property>
+		<property name="consumeDao" ref="consumeDao"></property>
+	</bean>
+	-->	
+	<!-- Service
+	<bean id="RegisterService" class="com.obm.passport.service.RegisterService">
+		<property name="uidDao" ref="uidDao"></property>
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<bean id="BatchRegisterService" class="com.obm.passport.service.BatchRegisterService">
+		<property name="uidDao" ref="uidDao"></property>
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	 -->
+	 <bean id="ChargeDao" class="com.mop.game.db.imp.ChargeDaoImp">
+		<property name="dataSource" ref="GMDataSource"></property>
+	</bean>
+</beans>

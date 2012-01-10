@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<!-- DB 
+	
+	-->
+	<!-- Bean 
+	<bean name="consumeManager" class="com.obm.passport.core.ConsumeManager"
+		init-method="init">
+		<property name="userDao" ref="userDao"></property>
+		<property name="passportMappingDao" ref="userIdMapping"></property>
+		<property name="consumeDao" ref="consumeDao"></property>
+	</bean>
+	-->	
+	<!-- Service
+	<bean id="RegisterService" class="com.obm.passport.service.RegisterService">
+		<property name="uidDao" ref="uidDao"></property>
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<bean id="BatchRegisterService" class="com.obm.passport.service.BatchRegisterService">
+		<property name="uidDao" ref="uidDao"></property>
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	 <bean id="DataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver
+			</value>
+		</property>
+		<property name="url"
+   					value="jdbc:mysql://localhost:3306/mysql">
+  		</property>
+  		<property name="username" value="root"></property>
+  		<property name="password" value="root"></property>
+	</bean>
+	
+	<bean name="userDao" class="com.mop.game.db.imp.DefaultDaoImp">
+		<property name="dataSource" ref="DataSource"></property>
+	</bean>
+	
+	<bean id="signalService" class="com.mop.game.service.imp.IOSPusherService">
+		<property name="net" value="jms://http://0.0.0.0:8080"/>
+    	<property name="name" value="Jack"/>
+	</bean>
+	 -->
+	 <!-- PNS -->
+	 <bean id="pns_source1" class="com.mop.game.connection.pns.PNSConfig">
+	 	
+	 	<property name="keystore" value="3war.dev.apns.p12"/>
+	 	<property name="password" value="renrengames54"/>
+	 	<property name="production" value="true"/>
+	 	<property name="thread" value="30"/>
+	 </bean>
+	 <!-- 数据源 -->
+	 <bean id="IOSSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver
+			</value>
+		</property>
+		<property name="url"
+   					value="jdbc:mysql://localhost:3306/ios">
+  		</property>
+  		<property name="username" value="root"></property>
+  		<property name="password" value="root"></property>
+	</bean>
+	
+	 <bean id="IStatContainer" class="com.mop.game.service.IStatServiceContainer">
+		<property name="container">
+			<list>
+				<bean class="com.mop.game.serviceImp.IOSPusherService">
+					<property name="net" value="jms://http://0.0.0.0:8080"/>
+    				<property name="name" value="Jack"/>
+    				<property name="status" >
+    					<value type="com.mop.game.core.IStatStatus">INIT</value>
+    				</property>
+    				<property name="pnsConfig" ref="pns_source1"/>
+				</bean>
+				<bean class="com.mop.game.serviceImp.ManagerService">
+					<property name="net" value="http://127.0.0.1//8081"/>
+    				<property name="name" value="Manager"/>
+    				<property name="status" >
+    					<value type="com.mop.game.core.IStatStatus">INIT</value>
+    				</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="timerTask" class="com.mop.game.maintain.IStatTimerTask">
+	 	
+	 </bean>
+	<bean id="maintain" class="com.mop.game.maintain.StatMaintainContainer">
+		<property name="container">
+			<list>
+				<bean class="com.mop.game.maintain.StatTaskService">
+    				<property name="task" ref="timerTask"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+</beans>

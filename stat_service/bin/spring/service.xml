@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="pns_source1" class="com.mop.game.connection.pns.PNSConfig">
+	 	
+	 	<property name="keystore" value="3war.dev.apns.p12"/>
+	 	<property name="password" value="renrengames54"/>
+	 	<property name="production" value="true"/>
+	 	<property name="thread" value="3war.dev.apns.p12"/>
+	 </bean>
+	<bean class="com.mop.game.service.imp.IOSPusherService">
+					<property name="net" value="jms://tcp://0.0.0.0:61616"/>
+    				<property name="name" value="Jack"/>
+	</bean>
+</beans>
